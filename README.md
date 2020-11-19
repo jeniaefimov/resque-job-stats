@@ -46,6 +46,20 @@ class MyJob
 end
 ```
 
+If you are using ActiveJob::Base, you need to include it instead:
+
+```ruby
+class MyActiveJob < ActiveJob::Base
+  include Resque::Plugins::JobStats
+
+  queue_as :my_job
+
+  def perform(*args)
+    # ..
+  end
+end
+```
+
 And you will have a set of keys starting with `'stats:jobs:my_job'` inside your Resque redis namespace.
 
 Alternatively you can include just the metric you wish to record.

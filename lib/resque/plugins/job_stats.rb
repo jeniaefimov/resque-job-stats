@@ -38,11 +38,11 @@ module Resque
             end
           end
 
-          base.around_perform do |job|
+          base.around_perform do |job, block|
             job.class.methods.select do |meth|
               meth.to_s.start_with?("around_perform_")
             end.each do |meth|
-              job.class.send(meth)
+              job.class.send(meth) { block.call }
             end
           end
         end

@@ -2,6 +2,8 @@ module Resque
   module Plugins
     module JobStats
       module Duration
+        include Resque::Helpers
+
         def reset_job_durations
           Resque.redis.del(jobs_duration_key)
         end

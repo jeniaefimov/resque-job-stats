@@ -41,7 +41,7 @@ module Resque
             job.class.methods.select do |meth|
               meth.to_s.start_with?("around_perform_")
             end.each do |meth|
-              job.class.send(meth) { block.call }
+              job.class.send(meth, job.arguments) { block.call }
             end
           end
         end

@@ -24,7 +24,7 @@ module Resque
           "stats:jobs:#{self.name}:duration"
         end
 
-        def around_perform_job_stats_duration(*args)
+        def around_perform_job_stats_duration(args)
           start = Time.now
           begin
             yield

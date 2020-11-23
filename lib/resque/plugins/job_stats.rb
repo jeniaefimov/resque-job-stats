@@ -17,7 +17,7 @@ module Resque
         base.extend Resque::Plugins::JobStats::Duration
         base.extend Resque::Plugins::JobStats::Timeseries::Enqueued
         base.extend Resque::Plugins::JobStats::Timeseries::Performed
-        base.extend Resque::Plugins::JobStats::History
+        # base.extend Resque::Plugins::JobStats::History
         self.measured_jobs << base
 
         if base.ancestors.map(&:to_s).include?("ActiveJob::Base")
